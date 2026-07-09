@@ -31,7 +31,7 @@
             padding: 20px;
             position: relative;
             overflow-x: hidden;
-            cursor: pointer; /* Zmienia kursor na łapkę, sugerując kliknięcie */
+            cursor: pointer;
         }
 
         /* --- GALERIA W TLE --- */
@@ -58,10 +58,11 @@
             transition: all 0.5s ease;
         }
 
-        .p1 { top: -2%; left: -3%; width: 25vw; max-width: 320px; transform: rotate(-12deg); }
-        .p2 { top: 2%; right: -2%; width: 23vw; max-width: 290px; transform: rotate(8deg); }
-        .p3 { bottom: -3%; left: -2%; width: 26vw; max-width: 310px; transform: rotate(10deg); }
-        .p4 { bottom: -6%; right: -4%; width: 28vw; max-width: 350px; transform: rotate(-6deg); }
+        /* ZDJĘCIA ZBLIŻONE DO ŚRODKA */
+        .p1 { top: 4%; left: 5%; width: 30vw; max-width: 380px; transform: rotate(-10deg); }
+        .p2 { top: 6%; right: 4%; width: 28vw; max-width: 350px; transform: rotate(10deg); }
+        .p3 { bottom: 5%; left: 5%; width: 29vw; max-width: 360px; transform: rotate(8deg); }
+        .p4 { bottom: 3%; right: 4%; width: 32vw; max-width: 400px; transform: rotate(-6deg); }
         .p5 { top: 50%; left: 50%; width: 40vw; max-width: 450px; transform: translate(-50%, -50%) rotate(-3deg); opacity: 0.15; z-index: -2; }
 
         /* --- GŁÓWNA KARTA Z ŻYCZENIAMI --- */
@@ -220,14 +221,14 @@
 
     <div class="card">
         
+        <!-- POPRAWIONA NAZWA PLIKU LOGO ZGODNIE Z GITHUBEM -->
         <div class="emblem">
-            <img src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c4e1.png" alt="Chelsea FC Logo" width="100%">
+            <img src="logo.webp" alt="Chelsea FC Logo" width="100%">
         </div>
 
-        <!-- POPRAWIONA NAZWA PLIKU I DODANY AUTOPLAY -->
-        <audio id="chelseaAudio" src="hymn.mp3.mp3" loop autoplay></audio>
+        <!-- POPRAWIONA NAZWA PLIKU Z MUZYKĄ -->
+        <audio id="chelseaAudio" src="hymn.mp3" loop autoplay></audio>
         
-        <!-- Przycisk zostaje jako wskaźnik, że coś tu gra -->
         <button id="musicToggleBtn" class="music-btn" onclick="toggleMusic(event)">🎵 Odtwórz Hymn</button>
         
         <h1>Sto Lat!</h1>
@@ -254,9 +255,8 @@
         var btn = document.getElementById("musicToggleBtn");
         var isPlaying = false;
 
-        // Funkcja do ręcznego klikania w przycisk
         function toggleMusic(event) {
-            event.stopPropagation(); // Zapobiega podwójnemu wywołaniu kliknięcia tła
+            event.stopPropagation();
             if (audio.paused) {
                 audio.play();
                 btn.innerHTML = "⏸️ Zatrzymaj Hymn";
@@ -268,7 +268,6 @@
             }
         }
 
-        // Ukryty mechanizm - uruchamia muzykę przy pierwszym dotknięciu/kliknięciu GDZIEKOLWIEK na ekranie
         document.body.addEventListener('click', function() {
             if (audio.paused && !isPlaying) {
                 audio.play().then(() => {
