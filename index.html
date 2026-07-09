@@ -31,6 +31,7 @@
             padding: 20px;
             position: relative;
             overflow-x: hidden;
+            cursor: pointer; /* Zmienia kursor na łapkę, sugerując kliknięcie */
         }
 
         /* --- GALERIA W TLE --- */
@@ -51,21 +52,21 @@
             position: absolute;
             border-radius: 15px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.9);
-            opacity: 0.65;
+            opacity: 0.55;
             object-fit: cover;
             border: 2px solid rgba(255, 255, 255, 0.15);
             transition: all 0.5s ease;
         }
 
-        .p1 { top: 6%; left: 12%; width: 40vw; max-width: 450px; transform: rotate(-8deg); }
-        .p2 { top: 10%; right: 10%; width: 38vw; max-width: 420px; transform: rotate(12deg); }
-        .p3 { bottom: 5%; left: 15%; width: 35vw; max-width: 400px; transform: rotate(10deg); }
-        .p4 { bottom: 2%; right: 12%; width: 45vw; max-width: 480px; transform: rotate(-5deg); }
-        .p5 { top: 50%; left: 50%; width: 55vw; max-width: 600px; transform: translate(-50%, -50%) rotate(-3deg); opacity: 0.35; z-index: -2; }
+        .p1 { top: -2%; left: -3%; width: 25vw; max-width: 320px; transform: rotate(-12deg); }
+        .p2 { top: 2%; right: -2%; width: 23vw; max-width: 290px; transform: rotate(8deg); }
+        .p3 { bottom: -3%; left: -2%; width: 26vw; max-width: 310px; transform: rotate(10deg); }
+        .p4 { bottom: -6%; right: -4%; width: 28vw; max-width: 350px; transform: rotate(-6deg); }
+        .p5 { top: 50%; left: 50%; width: 40vw; max-width: 450px; transform: translate(-50%, -50%) rotate(-3deg); opacity: 0.15; z-index: -2; }
 
         /* --- GŁÓWNA KARTA Z ŻYCZENIAMI --- */
         .card {
-            background: rgba(10, 17, 40, 0.75);
+            background: rgba(10, 17, 40, 0.85);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -74,7 +75,7 @@
             max-width: 550px;
             padding: 40px 30px;
             text-align: center;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9);
             border-top: 5px solid var(--chelsea-blue);
             z-index: 10;
         }
@@ -98,6 +99,8 @@
             cursor: pointer;
             margin-bottom: 15px;
             transition: all 0.3s ease;
+            position: relative;
+            z-index: 20;
         }
 
         .music-btn:hover {
@@ -171,6 +174,8 @@
             letter-spacing: 1px;
             transition: all 0.3s ease;
             box-shadow: 0 0 20px rgba(3, 70, 148, 0.6);
+            position: relative;
+            z-index: 20;
         }
 
         .btn:hover {
@@ -193,11 +198,11 @@
         }
 
         @media (max-width: 768px) {
-            .bg-photo { opacity: 0.4; }
-            .p1 { width: 55vw; top: 2%; left: -5%; }
-            .p2 { width: 50vw; top: 5%; right: -5%; }
-            .p3 { width: 45vw; bottom: 8%; left: -5%; }
-            .p4 { width: 60vw; bottom: 2%; right: -10%; }
+            .bg-photo { opacity: 0.35; }
+            .p1 { width: 45vw; top: -2%; left: -5%; }
+            .p2 { width: 40vw; top: 2%; right: -5%; }
+            .p3 { width: 45vw; bottom: -2%; left: -5%; }
+            .p4 { width: 50vw; bottom: -5%; right: -10%; }
             .p5 { display: none; }
             .card { padding: 30px 20px; }
         }
@@ -216,12 +221,14 @@
     <div class="card">
         
         <div class="emblem">
-            <img src="logo.webp" alt="Chelsea FC Logo" width="100%">
+            <img src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c4e1.png" alt="Chelsea FC Logo" width="100%">
         </div>
 
-        <!-- UKRYTY ODTWARZACZ I WIDOCZNY PRZYCISK -->
-        <audio id="chelseaAudio" src="hymn.mp3.mp3" loop></audio>
-        <button id="musicToggleBtn" class="music-btn" onclick="toggleMusic()">🎵 Odtwórz Hymn</button>
+        <!-- POPRAWIONA NAZWA PLIKU I DODANY AUTOPLAY -->
+        <audio id="chelseaAudio" src="hymn.mp3.mp3" loop autoplay></audio>
+        
+        <!-- Przycisk zostaje jako wskaźnik, że coś tu gra -->
+        <button id="musicToggleBtn" class="music-btn" onclick="toggleMusic(event)">🎵 Odtwórz Hymn</button>
         
         <h1>Sto Lat!</h1>
         <div class="sub-title">Pride of London</div>
@@ -242,22 +249,37 @@
         <p class="footer-text">Niebiescy bracia Kubuś i Mrozik 🔵</p>
     </div>
 
-    <!-- SKRYPT DO STEROWANIA MUZYKĄ -->
     <script>
-        function toggleMusic() {
-            var audio = document.getElementById("chelseaAudio");
-            var btn = document.getElementById("musicToggleBtn");
-            
+        var audio = document.getElementById("chelseaAudio");
+        var btn = document.getElementById("musicToggleBtn");
+        var isPlaying = false;
+
+        // Funkcja do ręcznego klikania w przycisk
+        function toggleMusic(event) {
+            event.stopPropagation(); // Zapobiega podwójnemu wywołaniu kliknięcia tła
             if (audio.paused) {
                 audio.play();
                 btn.innerHTML = "⏸️ Zatrzymaj Hymn";
-                btn.style.background = "rgba(3, 70, 148, 0.5)"; /* Zmienia kolor przycisku po włączeniu */
+                btn.style.background = "rgba(3, 70, 148, 0.5)";
             } else {
                 audio.pause();
                 btn.innerHTML = "🎵 Odtwórz Hymn";
                 btn.style.background = "rgba(255, 255, 255, 0.1)";
             }
         }
+
+        // Ukryty mechanizm - uruchamia muzykę przy pierwszym dotknięciu/kliknięciu GDZIEKOLWIEK na ekranie
+        document.body.addEventListener('click', function() {
+            if (audio.paused && !isPlaying) {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    btn.innerHTML = "⏸️ Zatrzymaj Hymn";
+                    btn.style.background = "rgba(3, 70, 148, 0.5)";
+                }).catch(error => {
+                    console.log("Autoplay zablokowany przez przeglądarkę.");
+                });
+            }
+        }, { once: true });
     </script>
 </body>
 </html>
