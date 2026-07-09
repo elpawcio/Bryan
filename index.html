@@ -308,15 +308,18 @@
 
         // --- SKRYPT ZABEZPIECZAJĄCY REVOLUT ---
         function odbierzPrezent() {
-            var pin = prompt("Zabezpieczenie antykradzieżowe 🛡️\nPodaj tajne hasło, aby odebrać prezent:");
-            
-            // Sprawdza hasło ignorując wielkość liter
-            if (pin && pin.toLowerCase() === "gorczyca") {
-                window.open("https://revolut.me/p/NCEE9K2tbK", "_blank");
-            } else {
-                alert("Chujowo to wpisałeś, nie znasz swoajego nazwiska?");
-            }
-        }
+    var pin = prompt("Zabezpieczenie antykradzieżowe 🛡️\nPodaj tajne hasło, aby odebrać prezent:");
+    
+    // "Z29yY3p5Y2E=" to Twoje hasło "gorczyca" zakodowane w Base64
+    var ukryteHaslo = "Z29yY3p5Y2E="; 
+    
+    // Funkcja dekodująca w locie
+    if (pin && btoa(pin.toLowerCase()) === ukryteHaslo) {
+        window.open("https://revolut.me/p/NCEE9K2tbK", "_blank");
+    } else {
+        alert("Pudło! To nie to hasło.");
+    }
+}
     </script>
 </body>
 </html>
