@@ -31,9 +31,10 @@
             padding: 20px;
             position: relative;
             overflow-x: hidden;
+            cursor: pointer;
         }
 
-        /* --- EKRAN POWITALNY (Trik na włączenie muzyki) --- */
+        /* --- EKRAN POWITALNY --- */
         #welcome-screen {
             position: fixed;
             top: 0;
@@ -130,7 +131,6 @@
             animation: pulse 2s infinite;
         }
 
-        /* --- PRZYCISK ZATRZYMANIA MUZYKI --- */
         .music-btn {
             background: transparent;
             color: rgba(255,255,255,0.5);
@@ -164,18 +164,38 @@
             letter-spacing: 2px;
         }
 
+        /* --- ULEPSZONY STYL ŻYCZEŃ --- */
         .wishes {
-            background: rgba(255, 255, 255, 0.08);
-            padding: 20px;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 25px; /* Więcej miejsca w środku */
             border-radius: 12px;
             margin-bottom: 35px;
             border-left: 4px solid var(--chelsea-yellow);
-            text-align: left;
-            line-height: 1.6;
+            text-align: justify; /* Rozciągnięcie tekstu od krawędzi do krawędzi */
+            line-height: 1.7; /* Lepsza czytelność i odstępy */
         }
 
-        .wishes p { margin-bottom: 12px; color: #e2e8f0; font-size: 0.95rem; }
-        .wishes p:last-child { margin-bottom: 0; }
+        .wishes p { 
+            margin-bottom: 15px; 
+            color: #e2e8f0; 
+            font-size: 0.95rem; 
+        }
+
+        /* Klasa do wyróżnienia cytatu z roastem */
+        .roast-quote {
+            display: block;
+            margin-top: 10px;
+            font-style: italic;
+            color: #cbd5e1;
+            text-align: center;
+        }
+
+        .wishes p:last-child { 
+            margin-bottom: 0; 
+            text-align: center; /* Wyśrodkowanie puenty */
+            font-weight: bold;
+            color: #ffffff;
+        }
 
         .invitation-box { margin-bottom: 30px; }
         .invitation-text { font-size: 1.05rem; color: var(--text-gray); margin-bottom: 25px; line-height: 1.5; }
@@ -189,6 +209,8 @@
             padding: 16px 35px;
             font-weight: 700;
             border-radius: 50px;
+            border: none;
+            cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: all 0.3s ease;
@@ -216,7 +238,6 @@
 </head>
 <body>
 
-    <!-- ZASŁONA POWITALNA -->
     <div id="welcome-screen">
         <button class="gift-btn" onclick="openGift()">Otwórz prezent 🎁</button>
     </div>
@@ -230,44 +251,44 @@
     </div>
 
     <div class="card">
+        
         <div class="emblem">
             <img src="logo.webp" alt="Chelsea FC Logo" width="100%">
         </div>
 
-        <audio id="chelseaAudio" src="hymn.mp3.mp3" loop></audio>
+        <audio id="chelseaAudio" src="hymn.mp3" loop></audio>
         
-        <!-- Dyskretny przycisk w razie gdyby chciał zatrzymać dźwięk -->
         <button id="musicToggleBtn" class="music-btn" onclick="toggleMusic(event)">Wycisz muzykę</button>
         
         <h1>Sto Lat!</h1>
         <div class="sub-title">Bryan</div>
 
+        <!-- ULEPSZONY BLOK TEKSTU -->
         <div class="wishes">
-            <p>Z okazji urodzin życzę Ci wszystkiego, co najlepsze! Wielu sukcesów, zdrowia, spełnienia marzeń oraz emocji nie tylko tych przed telewizorem, ale przede wszystkim na stadionie.</p>
-            <p>Co by koledzy pomagali ci się wspinać po kamyckach a droga na rowerze była równą i pamiętaj "Jak tylko wszedłeś, wykryto niski poziom IQ Twój pysk jak Raffaello wyraża więcej niż tysiąc słów"</p>
-            <p>Niech The Blues niech zawsze grają po naszej myśli! 💙</p>
+            <p>Z okazji urodzin życzymy Ci wszystkiego, co najlepsze! Wielu sukcesów, zdrowia, spełnienia marzeń oraz emocji – nie tylko tych przed telewizorem, ale przede wszystkim na stadionie.</p>
+            <p>Co by koledzy pomagali Ci się wspinać po kamyckach, a droga na rowerze była równą. I pamiętaj: 
+            <span class="roast-quote">„Jak tylko wszedłeś, wykryto niski poziom IQ. Twój pysk jak Raffaello wyraża więcej niż tysiąc słów”</span></p>
+            <p>Niech The Blues zawsze grają po naszej myśli! 💙</p>
         </div>
 
         <div class="invitation-box">
             <p class="invitation-text">
                 Prezent z tej okazji nie mógł być inny. Trzeba poczuć atmosferę Stamford Bridge ponownie na żywo! Oto budżet na Twój <strong>Chelsea FC Membership</strong>. Odbierz środki i ruszamy na mecz!
             </p>
-            <a href="https://revolut.me/p/NCEE9K2tbK" target="_blank" class="btn">Odbierz 200 PLN na Membership</a>
+            <!-- PRZYCISK ZABEZPIECZONY HASŁEM -->
+            <button onclick="odbierzPrezent()" class="btn">Odbierz PLN na Membershipa</button>
         </div>
 
-        <p class="footer-text">Niebiescy bracia Kubuś i Mrozik 🔵</p>
+        <p class="footer-text">Niebiescy bracia Kubuś, Mrozik i Piotrek🔵</p>
     </div>
 
     <script>
         var audio = document.getElementById("chelseaAudio");
         var btn = document.getElementById("musicToggleBtn");
 
-        // Funkcja uruchamiająca się po kliknięciu "Otwórz prezent"
         function openGift() {
-            // Odtwórz muzykę
             audio.play().catch(e => console.log("Przeglądarka zablokowała audio: " + e));
             
-            // Zwiń ekran powitalny
             var welcomeScreen = document.getElementById('welcome-screen');
             welcomeScreen.style.opacity = '0';
             setTimeout(() => {
@@ -282,6 +303,18 @@
             } else {
                 audio.pause();
                 btn.innerHTML = "Włącz muzykę";
+            }
+        }
+
+        // --- SKRYPT ZABEZPIECZAJĄCY REVOLUT ---
+        function odbierzPrezent() {
+            var pin = prompt("Zabezpieczenie antykradzieżowe 🛡️\nPodaj tajne hasło, aby odebrać prezent:");
+            
+            // Sprawdza hasło ignorując wielkość liter
+            if (pin && pin.toLowerCase() === "gorczyca") {
+                window.open("https://revolut.me/p/NCEE9K2tbK", "_blank");
+            } else {
+                alert("Chujowo to wpisałeś, nie znasz swoajego nazwiska?");
             }
         }
     </script>
