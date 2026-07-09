@@ -9,7 +9,7 @@
         :root {
             --chelsea-blue: #034694;
             --chelsea-yellow: #EE242C;
-            --dark-bg: #050a17; /* Nieco ciemniejsze tło bazy */
+            --dark-bg: #050a17;
             --text-light: #ffffff;
             --text-gray: #a0aec0;
         }
@@ -29,7 +29,7 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px;
-            position: relative; /* Potrzebne do pozycjonowania zdjęć */
+            position: relative;
             overflow-x: hidden;
         }
 
@@ -41,7 +41,7 @@
             width: 100%; 
             height: 100%;
             z-index: -1;
-            pointer-events: none; /* Przepuszcza kliknięcia do elementów pod spodem */
+            pointer-events: none;
             overflow: hidden;
             background-image: radial-gradient(circle at 20% 30%, rgba(3, 70, 148, 0.2) 0%, transparent 60%),
                               radial-gradient(circle at 80% 70%, rgba(238, 36, 44, 0.1) 0%, transparent 50%);
@@ -50,24 +50,23 @@
         .bg-photo {
             position: absolute;
             border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
-            opacity: 0.35; /* Przezroczystość zdjęć - możesz zmienić np. na 0.5 jeśli chcesz jaśniejsze */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.9);
+            opacity: 0.65;
             object-fit: cover;
-            border: 2px solid rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.15);
             transition: all 0.5s ease;
         }
 
-        /* Pozycjonowanie poszczególnych zdjęć */
-        .p1 { top: -5%; left: -5%; width: 32vw; max-width: 350px; transform: rotate(-12deg); }
-        .p2 { top: 5%; right: -5%; width: 28vw; max-width: 300px; transform: rotate(8deg); }
-        .p3 { bottom: -2%; left: 2%; width: 25vw; max-width: 280px; transform: rotate(15deg); }
-        .p4 { bottom: -10%; right: -2%; width: 35vw; max-width: 380px; transform: rotate(-8deg); }
-        .p5 { top: 50%; left: 50%; width: 45vw; max-width: 500px; transform: translate(-50%, -50%) rotate(-3deg); opacity: 0.15; z-index: -2; } /* Zdjęcie na samym środku z tyłu */
+        .p1 { top: 6%; left: 12%; width: 40vw; max-width: 450px; transform: rotate(-8deg); }
+        .p2 { top: 10%; right: 10%; width: 38vw; max-width: 420px; transform: rotate(12deg); }
+        .p3 { bottom: 5%; left: 15%; width: 35vw; max-width: 400px; transform: rotate(10deg); }
+        .p4 { bottom: 2%; right: 12%; width: 45vw; max-width: 480px; transform: rotate(-5deg); }
+        .p5 { top: 50%; left: 50%; width: 55vw; max-width: 600px; transform: translate(-50%, -50%) rotate(-3deg); opacity: 0.35; z-index: -2; }
 
         /* --- GŁÓWNA KARTA Z ŻYCZENIAMI --- */
         .card {
-            background: rgba(10, 17, 40, 0.65); /* Ciemniejsze, żeby odciąć tekst od zdjęć */
-            backdrop-filter: blur(15px); /* Mocniejszy efekt rozmycia tła pod kartą */
+            background: rgba(10, 17, 40, 0.75);
+            backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 20px;
@@ -75,16 +74,35 @@
             max-width: 550px;
             padding: 40px 30px;
             text-align: center;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
             border-top: 5px solid var(--chelsea-blue);
-            z-index: 10; /* Karta zawsze na wierzchu */
+            z-index: 10;
         }
 
         .emblem {
             width: 90px;
             height: 90px;
-            margin: 0 auto 20px auto;
+            margin: 0 auto 15px auto;
             animation: pulse 2s infinite;
+        }
+
+        /* --- PRZYCISK MUZYKI --- */
+        .music-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .music-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #fff;
         }
 
         h1 {
@@ -174,14 +192,13 @@
             100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(3, 70, 148, 0.4)); }
         }
 
-        /* Zmiany dla telefonów (mniejsze zdjęcia w tle) */
         @media (max-width: 768px) {
-            .bg-photo { opacity: 0.25; }
-            .p1 { width: 50vw; top: -5%; left: -15%; }
-            .p2 { width: 45vw; top: -2%; right: -10%; }
-            .p3 { width: 40vw; bottom: 5%; left: -10%; }
-            .p4 { width: 55vw; bottom: -5%; right: -15%; }
-            .p5 { display: none; } /* Ukrywamy środkowe zdjęcie na małym ekranie, żeby nie robić bałaganu */
+            .bg-photo { opacity: 0.4; }
+            .p1 { width: 55vw; top: 2%; left: -5%; }
+            .p2 { width: 50vw; top: 5%; right: -5%; }
+            .p3 { width: 45vw; bottom: 8%; left: -5%; }
+            .p4 { width: 60vw; bottom: 2%; right: -10%; }
+            .p5 { display: none; }
             .card { padding: 30px 20px; }
         }
     </style>
@@ -189,18 +206,22 @@
 <body>
 
     <div class="bg-gallery">
-        <img src="1.jpg" class="bg-photo p1" alt="Wspomnienie 1">
-        <img src="2.jpg" class="bg-photo p2" alt="Wspomnienie 2">
-        <img src="3.jpg" class="bg-photo p3" alt="Wspomnienie 3">
-        <img src="4.jpg" class="bg-photo p4" alt="Wspomnienie 4">
-        <img src="5.jpg" class="bg-photo p5" alt="Wspomnienie 5">
+        <img src="1.png" class="bg-photo p1" alt="Wspomnienie 1">
+        <img src="2.png" class="bg-photo p2" alt="Wspomnienie 2">
+        <img src="3.png" class="bg-photo p3" alt="Wspomnienie 3">
+        <img src="4.png" class="bg-photo p4" alt="Wspomnienie 4">
+        <img src="5.png" class="bg-photo p5" alt="Wspomnienie 5">
     </div>
 
     <div class="card">
         
         <div class="emblem">
-            <img src="https://upload.wikimedia.org/wikipedia/pl/c/cc/Chelsea_FC.svg" alt="Chelsea FC Logo" width="100%">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/cc/Chelsea_FC.svg/240px-Chelsea_FC.svg.png" alt="Chelsea FC Logo" width="100%">
         </div>
+
+        <!-- UKRYTY ODTWARZACZ I WIDOCZNY PRZYCISK -->
+        <audio id="chelseaAudio" src="hymn.mp3" loop></audio>
+        <button id="musicToggleBtn" class="music-btn" onclick="toggleMusic()">🎵 Odtwórz Hymn</button>
         
         <h1>Sto Lat!</h1>
         <div class="sub-title">Pride of London</div>
@@ -221,5 +242,22 @@
         <p class="footer-text">Keep The Blue Flag Flying High! KTBFFH 🔵</p>
     </div>
 
+    <!-- SKRYPT DO STEROWANIA MUZYKĄ -->
+    <script>
+        function toggleMusic() {
+            var audio = document.getElementById("chelseaAudio");
+            var btn = document.getElementById("musicToggleBtn");
+            
+            if (audio.paused) {
+                audio.play();
+                btn.innerHTML = "⏸️ Zatrzymaj Hymn";
+                btn.style.background = "rgba(3, 70, 148, 0.5)"; /* Zmienia kolor przycisku po włączeniu */
+            } else {
+                audio.pause();
+                btn.innerHTML = "🎵 Odtwórz Hymn";
+                btn.style.background = "rgba(255, 255, 255, 0.1)";
+            }
+        }
+    </script>
 </body>
 </html>
