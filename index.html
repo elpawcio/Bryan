@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wszystkiego Najlepszego! 💙</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --chelsea-blue: #034694;
             --chelsea-yellow: #EE242C;
-            --dark-bg: #0a1128;
+            --dark-bg: #050a17; /* Nieco ciemniejsze tło bazy */
             --text-light: #ffffff;
             --text-gray: #a0aec0;
         }
@@ -17,7 +18,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
 
         body {
@@ -28,40 +29,77 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px;
-            background-image: radial-gradient(circle at 20% 30%, rgba(3, 70, 148, 0.4) 0%, transparent 50%),
-                              radial-gradient(circle at 80% 70%, rgba(238, 36, 44, 0.15) 0%, transparent 50%);
+            position: relative; /* Potrzebne do pozycjonowania zdjęć */
+            overflow-x: hidden;
         }
 
+        /* --- GALERIA W TLE --- */
+        .bg-gallery {
+            position: fixed;
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            z-index: -1;
+            pointer-events: none; /* Przepuszcza kliknięcia do elementów pod spodem */
+            overflow: hidden;
+            background-image: radial-gradient(circle at 20% 30%, rgba(3, 70, 148, 0.2) 0%, transparent 60%),
+                              radial-gradient(circle at 80% 70%, rgba(238, 36, 44, 0.1) 0%, transparent 50%);
+        }
+
+        .bg-photo {
+            position: absolute;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+            opacity: 0.35; /* Przezroczystość zdjęć - możesz zmienić np. na 0.5 jeśli chcesz jaśniejsze */
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s ease;
+        }
+
+        /* Pozycjonowanie poszczególnych zdjęć */
+        .p1 { top: -5%; left: -5%; width: 32vw; max-width: 350px; transform: rotate(-12deg); }
+        .p2 { top: 5%; right: -5%; width: 28vw; max-width: 300px; transform: rotate(8deg); }
+        .p3 { bottom: -2%; left: 2%; width: 25vw; max-width: 280px; transform: rotate(15deg); }
+        .p4 { bottom: -10%; right: -2%; width: 35vw; max-width: 380px; transform: rotate(-8deg); }
+        .p5 { top: 50%; left: 50%; width: 45vw; max-width: 500px; transform: translate(-50%, -50%) rotate(-3deg); opacity: 0.15; z-index: -2; } /* Zdjęcie na samym środku z tyłu */
+
+        /* --- GŁÓWNA KARTA Z ŻYCZENIAMI --- */
         .card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(10, 17, 40, 0.65); /* Ciemniejsze, żeby odciąć tekst od zdjęć */
+            backdrop-filter: blur(15px); /* Mocniejszy efekt rozmycia tła pod kartą */
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 20px;
             width: 100%;
             max-width: 550px;
             padding: 40px 30px;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
             border-top: 5px solid var(--chelsea-blue);
+            z-index: 10; /* Karta zawsze na wierzchu */
         }
 
         .emblem {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 20px auto;
             animation: pulse 2s infinite;
         }
 
         h1 {
             font-size: 2.2rem;
+            font-weight: 800;
             color: #ffffff;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
         .sub-title {
-            color: var(--chelsea-blue);
-            font-weight: bold;
+            color: #00e5ff;
+            font-weight: 600;
             font-size: 1.1rem;
             text-transform: uppercase;
             margin-bottom: 30px;
@@ -69,7 +107,7 @@
         }
 
         .wishes {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.08);
             padding: 20px;
             border-radius: 12px;
             margin-bottom: 35px;
@@ -79,8 +117,9 @@
         }
 
         .wishes p {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             color: #e2e8f0;
+            font-size: 0.95rem;
         }
 
         .wishes p:last-child {
@@ -92,9 +131,9 @@
         }
 
         .invitation-text {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: var(--text-gray);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             line-height: 1.5;
         }
 
@@ -107,55 +146,76 @@
             background: var(--chelsea-blue);
             color: white;
             text-decoration: none;
-            padding: 15px 35px;
-            font-weight: bold;
+            padding: 16px 35px;
+            font-weight: 700;
             border-radius: 50px;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(3, 70, 148, 0.4);
+            box-shadow: 0 0 20px rgba(3, 70, 148, 0.6);
         }
 
         .btn:hover {
-            background: #0456b7;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(3, 70, 148, 0.6);
+            background: #0558b8;
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(3, 70, 148, 0.9);
         }
 
         .footer-text {
             margin-top: 25px;
             font-size: 0.85rem;
             color: var(--text-gray);
+            font-weight: 600;
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            0% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(3, 70, 148, 0.4)); }
+            50% { transform: scale(1.08); filter: drop-shadow(0 0 15px rgba(3, 70, 148, 0.8)); }
+            100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(3, 70, 148, 0.4)); }
+        }
+
+        /* Zmiany dla telefonów (mniejsze zdjęcia w tle) */
+        @media (max-width: 768px) {
+            .bg-photo { opacity: 0.25; }
+            .p1 { width: 50vw; top: -5%; left: -15%; }
+            .p2 { width: 45vw; top: -2%; right: -10%; }
+            .p3 { width: 40vw; bottom: 5%; left: -10%; }
+            .p4 { width: 55vw; bottom: -5%; right: -15%; }
+            .p5 { display: none; } /* Ukrywamy środkowe zdjęcie na małym ekranie, żeby nie robić bałaganu */
+            .card { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
 
+    <div class="bg-gallery">
+        <img src="1.png" class="bg-photo p1" alt="Wspomnienie 1">
+        <img src="2.png" class="bg-photo p2" alt="Wspomnienie 2">
+        <img src="3.png" class="bg-photo p3" alt="Wspomnienie 3">
+        <img src="4.png" class="bg-photo p4" alt="Wspomnienie 4">
+        <img src="5.png" class="bg-photo p5" alt="Wspomnienie 5">
+    </div>
+
     <div class="card">
-        <!-- Możesz zmienić emoji poniżej na link do zdjęcia/logo, jeśli wolisz -->
-        <div class="emblem">⚽🦁</div>
+        
+        <div class="emblem">
+            <img src="https://upload.wikimedia.org/wikipedia/pl/c/cc/Chelsea_FC.svg" alt="Chelsea FC Logo" width="100%">
+        </div>
         
         <h1>Sto Lat!</h1>
         <div class="sub-title">Pride of London</div>
 
         <div class="wishes">
             <p><strong>Cześć Bryan,</strong></p>
-            <p>Z okazji urodzin życzę Ci wszystkiego, co najlepsze! Wielu sukcesów, zdrowia, spełnienia marzeń oraz nielimitowanych emocji – nie tylko tych na stadionie.</p>
+            <p>Z okazji urodzin życzę Ci wszystkiego, co najlepsze! Wielu sukcesów, zdrowia, spełnienia marzeń oraz nielimitowanych emocji – nie tylko tych przed telewizorem, ale przede wszystkim na stadionie.</p>
             <p>Niech ten rok przyniesie Ci masę powodów do radości, a The Blues niech zawsze grają po Twojej myśli! 💙</p>
         </div>
 
         <div class="invitation-box">
             <p class="invitation-text">
-                Prezent z tej okazji nie mógł być inny. Czas poczuć atmosferę Stamford Bridge na żywo! Odbierz swój <strong>Chelsea FC Membership</strong> i ruszamy na mecz!
+                Prezent z tej okazji nie mógł być inny. Czas poczuć atmosferę Stamford Bridge na żywo! Oto budżet na Twój oficjalny <strong>Chelsea FC Membership</strong>. Odbierz środki i ruszamy na mecz!
             </p>
-            <!-- W atrybucie href wklej link do karty podarunkowej lub oficjalnej strony Chelsea -->
-            <a href="revolut.me/pawehrfv8/200" target="_blank" class="btn">Odbierz Membership</a>
+            <a href="https://revolut.me/pawehrfv8/200" target="_blank" class="btn">Odbierz 200 PLN na Membership</a>
         </div>
 
         <p class="footer-text">Keep The Blue Flag Flying High! KTBFFH 🔵</p>
