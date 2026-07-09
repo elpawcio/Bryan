@@ -34,7 +34,6 @@
             cursor: pointer;
         }
 
-        /* --- EKRAN POWITALNY --- */
         #welcome-screen {
             position: fixed;
             top: 0;
@@ -78,7 +77,6 @@
             100% { transform: scale(1); }
         }
 
-        /* --- GALERIA W TLE --- */
         .bg-gallery {
             position: fixed;
             top: 0; 
@@ -108,7 +106,6 @@
         .p4 { bottom: 3%; right: 4%; width: 32vw; max-width: 400px; transform: rotate(-6deg); }
         .p5 { top: 50%; left: 50%; width: 40vw; max-width: 450px; transform: translate(-50%, -50%) rotate(-3deg); opacity: 0.15; z-index: -2; }
 
-        /* --- GŁÓWNA KARTA Z ŻYCZENIAMI --- */
         .card {
             background: rgba(10, 17, 40, 0.85);
             backdrop-filter: blur(15px);
@@ -164,7 +161,7 @@
             letter-spacing: 2px;
         }
 
-        /* --- ULEPSZONY STYL ŻYCZEŃ --- */
+        
         .wishes {
             background: rgba(255, 255, 255, 0.06);
             padding: 25px; /* Więcej miejsca w środku */
@@ -181,7 +178,7 @@
             font-size: 0.95rem; 
         }
 
-        /* Klasa do wyróżnienia cytatu z roastem */
+        
         .roast-quote {
             display: block;
             margin-top: 10px;
@@ -263,7 +260,7 @@
         <h1>Sto Lat!</h1>
         <div class="sub-title">Bryan</div>
 
-        <!-- ULEPSZONY BLOK TEKSTU -->
+        
         <div class="wishes">
             <p>Z okazji urodzin życzymy Ci wszystkiego, co najlepsze! Wielu sukcesów, zdrowia, spełnienia marzeń oraz emocji, nie tylko tych przed telewizorem, ale przede wszystkim na stadionie.</p>
             <p>Co by koledzy pomagali Ci się wspinać po kamyckach, a droga na rowerze była równą. I pamiętaj: 
@@ -275,7 +272,7 @@
             <p class="invitation-text">
                 Prezent z tej okazji nie mógł być inny. Trzeba poczuć atmosferę Stamford Bridge ponownie na żywo! Oto budżet na Twój <strong>Chelsea FC Membership</strong>. Odbierz środki i ruszamy na mecz!
             </p>
-            <!-- PRZYCISK ZABEZPIECZONY HASŁEM -->
+            
             <button onclick="odbierzPrezent()" class="btn">Odbierz PLN na Membershipa</button>
         </div>
 
@@ -309,11 +306,7 @@
         // --- SKRYPT ZABEZPIECZAJĄCY REVOLUT ---
         function odbierzPrezent() {
     var pin = prompt("Zabezpieczenie antykradzieżowe 🛡️\nPodaj tajne hasło, aby odebrać prezent:");
-    
-    // "Z29yY3p5Y2E=" to Twoje hasło "gorczyca" zakodowane w Base64
     var ukryteHaslo = "Z29yY3p5Y2E="; 
-    
-    // Funkcja dekodująca w locie
     if (pin && btoa(pin.toLowerCase()) === ukryteHaslo) {
         window.open("https://revolut.me/p/NCEE9K2tbK", "_blank");
     } else {
