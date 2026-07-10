@@ -105,6 +105,7 @@
         .p3 { bottom: 5%; left: 5%; width: 29vw; max-width: 360px; transform: rotate(8deg); }
         .p4 { bottom: 3%; right: 4%; width: 32vw; max-width: 400px; transform: rotate(-6deg); }
         .p5 { top: 50%; left: 50%; width: 40vw; max-width: 450px; transform: translate(-50%, -50%) rotate(-3deg); opacity: 0.15; z-index: -2; }
+        .p6 { bottom: 15%; right: 5%; width: 20vw; max-width: 250px; transform: rotate(-8deg); }
 
         .card {
             background: rgba(10, 17, 40, 0.85);
@@ -161,24 +162,18 @@
             letter-spacing: 2px;
         }
 
-        
         .wishes {
             background: rgba(255, 255, 255, 0.06);
-            padding: 25px; /* Więcej miejsca w środku */
+            padding: 25px;
             border-radius: 12px;
             margin-bottom: 35px;
             border-left: 4px solid var(--chelsea-yellow);
-            text-align: justify; /* Rozciągnięcie tekstu od krawędzi do krawędzi */
-            line-height: 1.7; /* Lepsza czytelność i odstępy */
+            text-align: justify;
+            line-height: 1.7;
         }
 
-        .wishes p { 
-            margin-bottom: 15px; 
-            color: #e2e8f0; 
-            font-size: 0.95rem; 
-        }
+        .wishes p { margin-bottom: 15px; color: #e2e8f0; font-size: 0.95rem; }
 
-        
         .roast-quote {
             display: block;
             margin-top: 10px;
@@ -187,12 +182,7 @@
             text-align: center;
         }
 
-        .wishes p:last-child { 
-            margin-bottom: 0; 
-            text-align: center; /* Wyśrodkowanie puenty */
-            font-weight: bold;
-            color: #ffffff;
-        }
+        .wishes p:last-child { margin-bottom: 0; text-align: center; font-weight: bold; color: #ffffff; }
 
         .invitation-box { margin-bottom: 30px; }
         .invitation-text { font-size: 1.05rem; color: var(--text-gray); margin-bottom: 25px; line-height: 1.5; }
@@ -229,6 +219,7 @@
             .p3 { width: 45vw; bottom: -2%; left: -5%; }
             .p4 { width: 50vw; bottom: -5%; right: -10%; }
             .p5 { display: none; }
+            .p6 { display: none; }
             .card { padding: 30px 20px; }
         }
     </style>
@@ -245,10 +236,10 @@
         <img src="3.jpg" class="bg-photo p3" alt="Wspomnienie 3">
         <img src="4.jpg" class="bg-photo p4" alt="Wspomnienie 4">
         <img src="5.jpg" class="bg-photo p5" alt="Wspomnienie 5">
+        <img src="6.jpg" class="bg-photo p6" alt="Wspomnienie 6">
     </div>
 
     <div class="card">
-        
         <div class="emblem">
             <img src="logo.webp" alt="Chelsea FC Logo" width="100%">
         </div>
@@ -260,7 +251,6 @@
         <h1>Sto Lat!</h1>
         <div class="sub-title">Bryan</div>
 
-        
         <div class="wishes">
             <p>Z okazji urodzin życzymy Ci wszystkiego, co najlepsze! Wielu sukcesów, zdrowia, spełnienia marzeń oraz emocji, nie tylko tych przed telewizorem, ale przede wszystkim na stadionie.</p>
             <p>Co by koledzy pomagali Ci się wspinać po kamyckach, a droga na rowerze była równą. I pamiętaj: 
@@ -272,11 +262,10 @@
             <p class="invitation-text">
                 Prezent z tej okazji nie mógł być inny. Trzeba poczuć atmosferę Stamford Bridge ponownie na żywo! Oto budżet na Twój <strong>Chelsea FC Membership</strong>. Odbierz środki i ruszamy na mecz!
             </p>
-            
             <button onclick="odbierzPrezent()" class="btn">Odbierz PLN na Membershipa</button>
         </div>
 
-        <p class="footer-text">Niebiescy bracia Kubuś, Mrozik i Piotrek🔵</p>
+        <p class="footer-text">Niebiescy bracia Kubuś, Mrozik i Piotrek 🔵</p>
     </div>
 
     <script>
@@ -303,16 +292,15 @@
             }
         }
 
-        // --- SKRYPT ZABEZPIECZAJĄCY REVOLUT ---
         function odbierzPrezent() {
-    var pin = prompt("Zabezpieczenie antykradzieżowe 🛡️\nPodaj tajne hasło, aby odebrać prezent:");
-    var ukryteHaslo = "Z29yY3p5Y2E="; 
-    if (pin && btoa(pin.toLowerCase()) === ukryteHaslo) {
-        window.open("https://revolut.me/p/NCEE9K2tbK", "_blank");
-    } else {
-        alert("Pudło! To nie to hasło.");
-    }
-}
+            var pin = prompt("Zabezpieczenie antykradzieżowe 🛡️\nPodaj tajne hasło, aby odebrać prezent:");
+            var ukryteHaslo = "Z29yY3p5Y2E="; 
+            if (pin && btoa(pin.toLowerCase()) === ukryteHaslo) {
+                window.open("https://revolut.me/p/NCEE9K2tbK", "_blank");
+            } else {
+                alert("Pudło! To nie to hasło.");
+            }
+        }
     </script>
 </body>
 </html>
