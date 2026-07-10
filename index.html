@@ -100,26 +100,27 @@
             transition: all 0.5s ease;
         }
 
-        /* --- ZMODYFIKOWANE ROZMIESZCZENIE ZDJĘĆ - BLIŻEJ CENTRUM --- */
+        /* --- ZMODYFIKOWANE ROZMIESZCZENIE 7 ZDJĘĆ - BLIŻEJ CENTRUM --- */
         .p1 { top: 15%; left: 10%; width: 22vw; max-width: 250px; transform: rotate(-8deg); }
         .p2 { top: 12%; right: 10%; width: 20vw; max-width: 230px; transform: rotate(12deg); }
         .p3 { bottom: 15%; left: 15%; width: 23vw; max-width: 260px; transform: rotate(5deg); }
         .p4 { bottom: 12%; right: 12%; width: 24vw; max-width: 270px; transform: rotate(-5deg); }
         .p5 { top: 45%; left: 8%; width: 18vw; max-width: 200px; transform: rotate(-15deg); }
         .p6 { top: 45%; right: 8%; width: 19vw; max-width: 210px; transform: rotate(10deg); }
+        .p7 { top: 5%; left: 40%; width: 21vw; max-width: 220px; transform: rotate(4deg); }
 
         .card {
-            background: rgba(10, 17, 40, 0.45); /* BARDZO ZWIĘKSZONA PRZEZROCZYSTOŚĆ KARTY */
-            backdrop-filter: blur(8px); /* Mniejsze rozmycie, żeby lepiej było widać tło */
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(10, 17, 40, 0.1);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 20px;
             width: 100%;
             max-width: 550px;
             padding: 40px 30px;
             text-align: center;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9);
-            border-top: 5px solid var(--chelsea-blue);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-top: 3px solid rgba(3, 70, 148, 0.5);
             z-index: 10;
         }
 
@@ -233,6 +234,7 @@
             .p4 { width: 35vw; bottom: 2%; right: -5%; }
             .p5 { display: none; }
             .p6 { display: none; }
+            .p7 { display: none; }
             .card { padding: 30px 20px; }
         }
     </style>
@@ -250,6 +252,7 @@
         <img src="4.jpg" class="bg-photo p4" alt="Wspomnienie 4">
         <img src="5.jpg" class="bg-photo p5" alt="Wspomnienie 5">
         <img src="6.jpg" class="bg-photo p6" alt="Wspomnienie 6">
+        <img src="7.jpg" class="bg-photo p7" alt="Wspomnienie 7">
     </div>
 
     <div class="card">
