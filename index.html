@@ -94,7 +94,7 @@
             position: absolute;
             border-radius: 15px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.9);
-            opacity: 0.3; 
+            opacity: 0.35; 
             object-fit: cover;
             border: 2px solid rgba(255, 255, 255, 0.15);
             transition: all 0.5s ease;
@@ -103,30 +103,35 @@
             max-width: 180px; 
         }
 
-        /* --- ROZMIESZCZENIE ZDJĘĆ - Wersja na komputer (rogi + środek, całą stronę) --- */
-        .p1 { top: 3%; left: 2%; transform: rotate(-5deg); }
-        .p2 { top: 3%; right: 2%; transform: rotate(5deg); }
-        .p3 { bottom: 3%; left: 2%; transform: rotate(3deg); }
-        .p4 { bottom: 3%; right: 2%; transform: rotate(-3deg); }
-        .p5 { top: 38%; left: 0%; transform: rotate(-10deg); }
-        .p6 { top: 38%; right: 0%; transform: rotate(10deg); }
-        .p7 { top: 1%; left: 43%; transform: rotate(-2deg); }
+        /* --- ROZMIESZCZENIE ZDJĘĆ - Wersja na komputer --- */
+        /* Bliżej środka, rozrzucone losowo po całej stronie (te same 7 zdjęć powielone x3, nieblisko siebie) */
+        .p1  { top: 4%;  left: 78%; transform: rotate(-6deg); }
+        .p2  { top: 46%; left: 4%;  transform: rotate(5deg); }
+        .p3  { top: 80%; left: 60%; transform: rotate(-4deg); }
 
-        /* --- Dodatkowe, powielone zdjęcia bliżej środka, żeby wypełnić całą stronę --- */
-        .p8  { top: 14%; left: 20%; transform: rotate(4deg); }
-        .p9  { top: 14%; right: 20%; transform: rotate(-4deg); }
-        .p10 { bottom: 12%; left: 20%; transform: rotate(-6deg); }
-        .p11 { bottom: 12%; right: 20%; transform: rotate(6deg); }
-        .p12 { top: 22%; left: 6%; transform: rotate(8deg); }
-        .p13 { top: 22%; right: 6%; transform: rotate(-8deg); }
-        .p14 { bottom: 30%; left: 8%; transform: rotate(-4deg); }
-        .p15 { bottom: 30%; right: 8%; transform: rotate(4deg); }
-        .p16 { top: 60%; left: 30%; transform: rotate(6deg); }
-        .p17 { top: 60%; right: 30%; transform: rotate(-6deg); }
-        .p18 { top: 48%; left: 14%; transform: rotate(-8deg); }
-        .p19 { top: 48%; right: 14%; transform: rotate(8deg); }
-        .p20 { bottom: 42%; left: 40%; transform: rotate(-3deg); }
-        .p21 { top: 30%; right: 40%; transform: rotate(5deg); }
+        .p4  { top: 16%; left: 30%; transform: rotate(7deg); }
+        .p5  { top: 38%; left: 88%; transform: rotate(-8deg); }
+        .p6  { top: 60%; left: 12%; transform: rotate(4deg); }
+
+        .p7  { top: 22%; left: 84%; transform: rotate(-5deg); }
+        .p8  { top: 52%; left: 26%; transform: rotate(8deg); }
+        .p9  { top: 78%; left: 6%;  transform: rotate(-7deg); }
+
+        .p10 { top: 6%;  left: 6%;  transform: rotate(6deg); }
+        .p11 { top: 44%; left: 66%; transform: rotate(-9deg); }
+        .p12 { top: 70%; left: 86%; transform: rotate(5deg); }
+
+        .p13 { top: 14%; left: 62%; transform: rotate(-6deg); }
+        .p14 { top: 40%; left: 34%; transform: rotate(9deg); }
+        .p15 { top: 64%; left: 78%; transform: rotate(-5deg); }
+
+        .p16 { top: 26%; left: 16%; transform: rotate(7deg); }
+        .p17 { top: 58%; left: 46%; transform: rotate(-8deg); }
+        .p18 { top: 86%; left: 44%; transform: rotate(4deg); }
+
+        .p19 { top: 10%; left: 46%; transform: rotate(-7deg); }
+        .p20 { top: 30%; left: 60%; transform: rotate(6deg); }
+        .p21 { top: 74%; left: 34%; transform: rotate(-9deg); }
 
         .card {
             background: transparent; 
@@ -243,30 +248,16 @@
 
         .footer-text { margin-top: 25px; font-size: 0.85rem; color: #ffffff; font-weight: 600; text-shadow: 1px 1px 4px rgba(0,0,0,0.9);}
 
-        /* --- WERSJA MOBILNA --- */
+        /* --- WERSJA MOBILNA - dokładnie jak w oryginale, bez zmian --- */
         @media (max-width: 768px) {
-            .bg-photo { width: 30vw; max-width: 120px; opacity: 0.25; }
-            .p1 { top: 1%; left: -2%; transform: rotate(-5deg); }
-            .p2 { top: 1%; right: -2%; transform: rotate(5deg); }
-            .p3 { bottom: 1%; left: -2%; transform: rotate(3deg); }
-            .p4 { bottom: 1%; right: -2%; transform: rotate(-3deg); }
-            .p5 { top: 38%; left: -5%; transform: rotate(-10deg); width: 26vw; }
-            .p6 { top: 38%; right: -5%; transform: rotate(10deg); width: 26vw; }
-            .p7 { top: 16%; left: 36%; transform: rotate(-2deg); width: 26vw; }
-            .p8  { top: 10%; left: 8%; width: 22vw; transform: rotate(4deg); }
-            .p9  { top: 10%; right: 8%; width: 22vw; transform: rotate(-4deg); }
-            .p10 { bottom: 8%; left: 8%; width: 22vw; transform: rotate(-6deg); }
-            .p11 { bottom: 8%; right: 8%; width: 22vw; transform: rotate(6deg); }
-            .p12 { display: none; }
-            .p13 { display: none; }
-            .p14 { top: 28%; left: -3%; width: 22vw; transform: rotate(-4deg); }
-            .p15 { top: 28%; right: -3%; width: 22vw; transform: rotate(4deg); }
-            .p16 { top: 58%; left: 22%; width: 22vw; transform: rotate(6deg); }
-            .p17 { top: 58%; right: 22%; width: 22vw; transform: rotate(-6deg); }
-            .p18 { display: none; }
-            .p19 { display: none; }
-            .p20 { bottom: 46%; left: 32%; width: 22vw; transform: rotate(-3deg); }
-            .p21 { display: none; }
+            .bg-photo { width: 30vw; max-width: 120px; }
+            .p1 { top: 2%; left: -2%; transform: rotate(-5deg); }
+            .p2 { top: 2%; right: -2%; transform: rotate(5deg); }
+            .p3 { bottom: 2%; left: -2%; transform: rotate(3deg); }
+            .p4 { bottom: 2%; right: -2%; transform: rotate(-3deg); }
+            .p5 { top: 40%; left: -5%; transform: rotate(-10deg); width: 25vw; }
+            .p6 { top: 40%; right: -5%; transform: rotate(10deg); width: 25vw; }
+            .p7 { top: 20%; left: 35%; transform: rotate(-2deg); width: 25vw; }
             .card { padding: 10px; }
         }
     </style>
@@ -286,20 +277,20 @@
         <img src="6.jpg" class="bg-photo p6" alt="Wspomnienie 6">
         <img src="7.jpg" class="bg-photo p7" alt="Wspomnienie 7">
 
-        <!-- Powielone zdjęcia bliżej środka, żeby wypełnić całą stronę -->
+        <!-- Powielone zdjęcia, rozrzucone losowo bliżej środka -->
         <img src="1.jpg" class="bg-photo p8" alt="Wspomnienie 1">
-        <img src="2.jpg" class="bg-photo p9" alt="Wspomnienie 2">
-        <img src="3.jpg" class="bg-photo p10" alt="Wspomnienie 3">
-        <img src="4.jpg" class="bg-photo p11" alt="Wspomnienie 4">
-        <img src="5.jpg" class="bg-photo p12" alt="Wspomnienie 5">
-        <img src="6.jpg" class="bg-photo p13" alt="Wspomnienie 6">
-        <img src="7.jpg" class="bg-photo p14" alt="Wspomnienie 7">
-        <img src="1.jpg" class="bg-photo p15" alt="Wspomnienie 1">
-        <img src="2.jpg" class="bg-photo p16" alt="Wspomnienie 2">
-        <img src="3.jpg" class="bg-photo p17" alt="Wspomnienie 3">
-        <img src="4.jpg" class="bg-photo p18" alt="Wspomnienie 4">
-        <img src="5.jpg" class="bg-photo p19" alt="Wspomnienie 5">
-        <img src="6.jpg" class="bg-photo p20" alt="Wspomnienie 6">
+        <img src="1.jpg" class="bg-photo p9" alt="Wspomnienie 1">
+        <img src="2.jpg" class="bg-photo p10" alt="Wspomnienie 2">
+        <img src="2.jpg" class="bg-photo p11" alt="Wspomnienie 2">
+        <img src="3.jpg" class="bg-photo p12" alt="Wspomnienie 3">
+        <img src="3.jpg" class="bg-photo p13" alt="Wspomnienie 3">
+        <img src="4.jpg" class="bg-photo p14" alt="Wspomnienie 4">
+        <img src="4.jpg" class="bg-photo p15" alt="Wspomnienie 4">
+        <img src="5.jpg" class="bg-photo p16" alt="Wspomnienie 5">
+        <img src="5.jpg" class="bg-photo p17" alt="Wspomnienie 5">
+        <img src="6.jpg" class="bg-photo p18" alt="Wspomnienie 6">
+        <img src="6.jpg" class="bg-photo p19" alt="Wspomnienie 6">
+        <img src="7.jpg" class="bg-photo p20" alt="Wspomnienie 7">
         <img src="7.jpg" class="bg-photo p21" alt="Wspomnienie 7">
     </div>
 
