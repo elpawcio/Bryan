@@ -30,7 +30,7 @@
             min-height: 100vh;
             padding: 20px;
             position: relative;
-            overflow-x: hidden;
+            overflow: hidden; /* Zablokowanie scrolla */
             cursor: pointer;
         }
 
@@ -77,8 +77,9 @@
             100% { transform: scale(1); }
         }
 
+        /* --- GALERIA ZDJĘĆ - Pozycjonowanie i stałe wielkości --- */
         .bg-gallery {
-            position: fixed;
+            position: absolute;
             top: 0; 
             left: 0; 
             width: 100%; 
@@ -92,35 +93,38 @@
 
         .bg-photo {
             position: absolute;
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.9);
-            opacity: 0.8; /* Zwiększona widoczność zdjęć */
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+            opacity: 0.7; /* Jasność zdjęć */
             object-fit: cover;
             border: 2px solid rgba(255, 255, 255, 0.15);
+            width: 180px; /* Sztywne wymiary zamiast vh/vw zapobiegają wchodzeniu pod tekst */
             transition: all 0.5s ease;
         }
 
-        /* --- ZMODYFIKOWANE ROZMIESZCZENIE 7 ZDJĘĆ - BLIŻEJ CENTRUM --- */
-        .p1 { top: 15%; left: 10%; width: 22vw; max-width: 250px; transform: rotate(-8deg); }
-        .p2 { top: 12%; right: 10%; width: 20vw; max-width: 230px; transform: rotate(12deg); }
-        .p3 { bottom: 15%; left: 15%; width: 23vw; max-width: 260px; transform: rotate(5deg); }
-        .p4 { bottom: 12%; right: 12%; width: 24vw; max-width: 270px; transform: rotate(-5deg); }
-        .p5 { top: 45%; left: 8%; width: 18vw; max-width: 200px; transform: rotate(-15deg); }
-        .p6 { top: 45%; right: 8%; width: 19vw; max-width: 210px; transform: rotate(10deg); }
-        .p7 { top: 5%; left: 40%; width: 21vw; max-width: 220px; transform: rotate(4deg); }
+        /* Ustawienie 7 zdjęć odsuniętych od środka */
+        .p1 { top: 5%; left: 3%; transform: rotate(-10deg); }
+        .p2 { top: 5%; right: 3%; transform: rotate(10deg); }
+        .p3 { bottom: 5%; left: 3%; transform: rotate(8deg); }
+        .p4 { bottom: 5%; right: 3%; transform: rotate(-6deg); }
+        .p5 { top: 40%; left: 1%; transform: rotate(-5deg); width: 160px; }
+        .p6 { top: 40%; right: 1%; transform: rotate(5deg); width: 160px;}
+        .p7 { top: 2%; left: 45%; transform: rotate(2deg); width: 150px; }
 
+
+        /* --- KARTA Z ŻYCZENIAMI - Bardzo przezroczysta --- */
         .card {
-            background: rgba(10, 17, 40, 0.1);
-            backdrop-filter: blur(2px);
-            -webkit-backdrop-filter: blur(2px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(10, 17, 40, 0.1); /* Mocno przezroczyste tło */
+            backdrop-filter: blur(4px); /* Lekkie rozmycie */
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.05); /* Prawie niewidoczna ramka */
             border-radius: 20px;
             width: 100%;
             max-width: 550px;
             padding: 40px 30px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border-top: 3px solid rgba(3, 70, 148, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Zmniejszony cień dla lekkości */
+            border-top: 3px solid rgba(3, 70, 148, 0.6);
             z-index: 10;
         }
 
@@ -152,7 +156,7 @@
             margin-bottom: 5px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
         }
 
         .sub-title {
@@ -162,11 +166,12 @@
             text-transform: uppercase;
             margin-bottom: 30px;
             letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
         }
 
         
         .wishes {
-            background: rgba(255, 255, 255, 0.08); /* Lekkie tło dla czytelności tekstu */
+            background: rgba(255, 255, 255, 0.05); /* Minimalnie widoczne tło dla tekstu */
             padding: 25px;
             border-radius: 12px;
             margin-bottom: 35px;
@@ -177,9 +182,9 @@
 
         .wishes p { 
             margin-bottom: 15px; 
-            color: #ffffff; /* Zmienione na biały dla lepszego kontrastu z przezroczystym tłem */
+            color: #ffffff; 
             font-size: 0.95rem; 
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.8); /* Cień tekstu chroniący go przed "zgubieniem się" na zdjęciach */
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.9); /* Grubszy cień dla czytelności */
         }
 
         
@@ -199,7 +204,9 @@
         }
 
         .invitation-box { margin-bottom: 30px; }
-        .invitation-text { font-size: 1.05rem; color: var(--text-light); margin-bottom: 25px; line-height: 1.5; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);}
+        .invitation-text { 
+            font-size: 1.05rem; color: #e2e8f0; margin-bottom: 25px; line-height: 1.5; text-shadow: 1px 1px 4px rgba(0,0,0,0.9); 
+        }
         .invitation-text strong { color: #fff; }
 
         .btn {
@@ -224,14 +231,14 @@
             box-shadow: 0 0 30px rgba(3, 70, 148, 0.9);
         }
 
-        .footer-text { margin-top: 25px; font-size: 0.85rem; color: #ffffff; font-weight: 600; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);}
+        .footer-text { margin-top: 25px; font-size: 0.85rem; color: #ffffff; font-weight: 600; text-shadow: 1px 1px 4px rgba(0,0,0,0.9);}
 
         @media (max-width: 768px) {
-            .bg-photo { opacity: 0.55; }
-            .p1 { width: 35vw; top: 2%; left: -2%; }
-            .p2 { width: 30vw; top: 5%; right: -2%; }
-            .p3 { width: 35vw; bottom: 5%; left: 0%; }
-            .p4 { width: 35vw; bottom: 2%; right: -5%; }
+            .bg-photo { opacity: 0.4; width: 100px; }
+            .p1 { top: 2%; left: 2%; }
+            .p2 { top: 2%; right: 2%; }
+            .p3 { bottom: 2%; left: 2%; }
+            .p4 { bottom: 2%; right: 2%; }
             .p5 { display: none; }
             .p6 { display: none; }
             .p7 { display: none; }
