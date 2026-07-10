@@ -94,26 +94,21 @@
             position: absolute;
             border-radius: 15px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.9);
-            /* Ustawienie przezroczystości jak w mobile dla całego widoku */
-            opacity: 0.35; 
+            opacity: 0.5; /* Idealna przezroczystość dla PC - zdjęcia są wyraźne, ale tekst jest czytelny */
             object-fit: cover;
             border: 2px solid rgba(255, 255, 255, 0.15);
             transition: all 0.5s ease;
             z-index: 5; 
-            /* Zablokowanie wielkości zdjęć tak, by tworzyły ramkę (proporcje z mobile) */
-            width: 15vw; 
-            max-width: 180px; 
         }
 
-        /* ROZMIESZCZENIE ZDJĘĆ - Przyklejone do krawędzi (jak w mobile) */
-        .p1 { top: 2%; left: -1%; transform: rotate(-5deg); }
-        .p2 { top: 2%; right: -1%; transform: rotate(5deg); }
-        .p3 { bottom: 2%; left: -1%; transform: rotate(3deg); }
-        .p4 { bottom: 2%; right: -1%; transform: rotate(-3deg); }
-        .p5 { top: 40%; left: -2%; transform: rotate(-10deg); }
-        .p6 { top: 40%; right: -2%; transform: rotate(10deg); }
-        /* P7 umieszczone u góry pośrodku, ale wyżej, by nie zasłaniać logo */
-        .p7 { top: -2%; left: 45%; transform: rotate(-2deg); }
+        /* ROZMIESZCZENIE ZDJĘĆ W WERSJI DESKTOP - Większe i bliżej centrum */
+        .p1 { top: 10%; left: 15%; width: 22vw; max-width: 300px; transform: rotate(-8deg); }
+        .p2 { top: 5%; right: 15%; width: 20vw; max-width: 280px; transform: rotate(10deg); }
+        .p3 { bottom: 8%; left: 12%; width: 24vw; max-width: 320px; transform: rotate(6deg); }
+        .p4 { bottom: 5%; right: 12%; width: 23vw; max-width: 300px; transform: rotate(-5deg); }
+        .p5 { top: 40%; left: 10%; width: 18vw; max-width: 250px; transform: rotate(-12deg); }
+        .p6 { top: 45%; right: 10%; width: 19vw; max-width: 260px; transform: rotate(12deg); }
+        .p7 { top: -2%; left: 35%; width: 20vw; max-width: 280px; transform: rotate(-3deg); }
 
         .card {
             background: transparent; 
@@ -123,8 +118,7 @@
             border-radius: 20px;
             width: 100%;
             max-width: 550px;
-            /* Zmniejszony padding tak jak na telefonach, by tekst miał miejsce */
-            padding: 20px;
+            padding: 20px; /* Mniejszy margines wew. na PC by dopasować się do zdjęć */
             text-align: center;
             box-shadow: none; 
             z-index: 1; 
@@ -132,7 +126,7 @@
 
         .emblem, .music-btn, h1, .sub-title, .wishes, .invitation-box, .btn, .footer-text {
             position: relative;
-            z-index: 10;
+            z-index: 10; /* Elementy zawsze NAD zdjęciami */
         }
 
         .emblem {
@@ -233,7 +227,7 @@
 
         /* --- WERSJA MOBILNA - Bez zmian, tak jak ustaliłeś --- */
         @media (max-width: 768px) {
-            .bg-photo { width: 30vw; max-width: 120px; }
+            .bg-photo { opacity: 0.35; width: 30vw; max-width: 120px; }
             .p1 { top: 2%; left: -2%; transform: rotate(-5deg); }
             .p2 { top: 2%; right: -2%; transform: rotate(5deg); }
             .p3 { bottom: 2%; left: -2%; transform: rotate(3deg); }
